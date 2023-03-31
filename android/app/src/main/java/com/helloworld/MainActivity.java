@@ -2,10 +2,12 @@ package com.helloworld;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.github.kevinejohn.keyevent.KeyEventModule;
 
 import expo.modules.ReactActivityDelegateWrapper;
 
@@ -53,5 +55,36 @@ public class MainActivity extends ReactActivity {
     // Use the default back button implementation on Android S
     // because it's doing more than {@link Activity#moveTaskToBack} in fact.
     super.invokeDefaultOnBackPressed();
+  }
+
+  @Override  // <--- Add this method if you want to react to keyDown
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    KeyEventModule.getInstance().onKeyDownEvent(keyCode, event);
+
+    super.onKeyDown(keyCode, event);
+    return true;
+  }
+
+  @Override  // <--- Add this method if you want to react to keyUp
+  public boolean onKeyUp(int keyCode, KeyEvent event) {
+    KeyEventModule.getInstance().onKeyUpEvent(keyCode, event);
+
+    // There are 2 ways this can be done:
+    //  1.  Override the default keyboard event behavior
+    //    super.onKeyUp(keyCode, event);
+    //    return true;
+
+    //  2.  Keep default keyboard event behavior
+    //    return super.onKeyUp(keyCode, event);
+
+    // Using method #1
+    super.onKeyUp(keyCode, event);
+    return true;
+  }
+
+  @Override
+  public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
+    KeyEventModule.getInstance().onKeyMultipleEvent(keyCode, repeatCount, event);
+    return super.onKeyMultiple(keyCode, repeatCount, event);
   }
 }
