@@ -32,12 +32,6 @@ export interface CustomVirtualizedListProps<T extends ItemWithIndex> {
   style?: ViewStyle
   vertical?: boolean
   ListHeaderComponent?: ReactNode
-  /**
-   * @deprecated
-   * Use a custom key instead of the recycling.
-   * Should only be used on Antman
-   * */
-  keyExtractor?: (index: number) => string
 }
 
 const useOnEndReached = ({
@@ -151,7 +145,6 @@ export const CustomVirtualizedList = typedMemo(
     style,
     vertical = false,
     ListHeaderComponent,
-    keyExtractor,
   }: CustomVirtualizedListProps<T>) => {
     const numberOfItemsVisibleOnHalfScreen = Math.floor(numberOfItemsVisibleOnScreen / 2)
     const range = getRange(data, currentlyFocusedItemIndex, numberOfRenderedItems)
@@ -203,7 +196,7 @@ export const CustomVirtualizedList = typedMemo(
           {dataSliceToRender.map((item) => {
             return (
               <ItemContainerWithAnimatedStyle<T>
-                key={keyExtractor ? keyExtractor(item.index) : recycledKeyExtractor(item.index)}
+                key={recycledKeyExtractor(item.index)}
                 renderItem={renderItem}
                 item={item}
                 itemSize={itemSize}

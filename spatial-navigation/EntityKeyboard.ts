@@ -20,7 +20,6 @@ export default class EntityKeyboard extends EntityKeyboardEvent {
   public addEventListener() {
     NativeKeyEvent.onKeyDownListener(this.listenerKeyDown);
     NativeKeyEvent.onKeyUpListener(this.listenerKeyUp);
-    console.log("coucou");
   }
 
   public removeEventListener() {
@@ -30,7 +29,6 @@ export default class EntityKeyboard extends EntityKeyboardEvent {
   }
 
   private listenerKeyDown = (keyEvent: KeyEvent) => {
-    console.log("coucou2");
     return this.onKeyDownListener(keyEvent.keyCode);
   };
 

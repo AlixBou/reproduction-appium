@@ -17,7 +17,7 @@ const data = [{index : 1},{index : 2},{index : 3},{index : 4},{index : 5},{index
 const renderItem = (item : {index: number}) => {
   return (<SpatialNavigatorNode isFocusable>
       {({ isFocused }) => (
-        <View testID={`item${item.index}`} style={{backgroundColor : isFocused ?'green' : 'red', height : 30, width : 140}}/>
+        <View testID={`item${item.index}`} style={{backgroundColor : item.index===6 ?'green' : 'red', height :isFocused ? 30 : 40, width : 140}}/>
      )}
     </SpatialNavigatorNode>
     )
@@ -31,12 +31,11 @@ export default function App() {
   
   return (
 
-    <View style={{height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width,}}>
+    <View style={{flex:1}}>
     <SpatialNavigatorRoot
       isLockedFromParent={false}
     >
-      <Row renderItem={(item) => renderItem(item.item)} data ={data} itemSize={160} numberOfRenderedItems={12} numberOfItemsVisibleOnScreen={6}></Row>
+      <Row renderItem={(item) => renderItem(item.item)} data ={data} itemSize={160} numberOfRenderedItems={24} numberOfItemsVisibleOnScreen={6}></Row>
     </SpatialNavigatorRoot>
   </View>
 )
