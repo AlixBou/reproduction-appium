@@ -17,7 +17,7 @@ const data = [{index : 1},{index : 2},{index : 3},{index : 4},{index : 5},{index
 const renderItem = (item : {index: number}) => {
   return (<SpatialNavigatorNode isFocusable>
       {({ isFocused }) => (
-        <View testID={`item${item.index}`} style={{backgroundColor : item.index===6 ?'green' : 'red', height :isFocused ? 30 : 40, width : 140}}/>
+        <View testID={`item${item.index}`} style={{backgroundColor : item.index===5 ?'green' : 'red', height :isFocused ? 30 : 40, width : 140} }accessible={true}/>
      )}
     </SpatialNavigatorNode>
     )

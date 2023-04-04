@@ -86,7 +86,9 @@ const ItemContainerWithAnimatedStyle = typedMemo(
         ]),
       [item.index, itemSize, vertical],
     )
-    return <View style={style}>{renderItem({ item })}</View>
+    return <View                
+        accessible={false}
+        style={style}>{renderItem({ item })}</View>
   },
 )
 
@@ -190,6 +192,7 @@ export const CustomVirtualizedList = typedMemo(
           style,
           { flexDirection: vertical ? 'column' : 'row' },
         ]}
+        accessible={false}
       >
         {ScrollableHeaderComponent}
         <View>
